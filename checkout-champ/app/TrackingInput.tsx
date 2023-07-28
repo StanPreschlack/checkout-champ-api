@@ -33,8 +33,9 @@ const TrackingComponent = () => {
 
             {data && (
                 <div>
-                    <h2>Tracking Info:</h2>
-                    <pre>{JSON.stringify(data, null, 2)}</pre>
+                    {/* lol */}
+                    {/* @ts-ignore */}
+                    <Tracking trackingData={data} />
                 </div>
             )}
         </div>
