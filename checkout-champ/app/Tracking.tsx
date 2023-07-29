@@ -1,19 +1,19 @@
 "use client"
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { TrackingData } from "./TrackingData";
 import 'bootstrap/dist/css/bootstrap.css'
+import { ResponseData } from "./TrackingData";
 
-export const Tracking = (trackingData:TrackingData) => {
+export const Tracking = (trackingData:ResponseData) => {
 
   return trackingData ? (
     <div className="col-md-8 col-12 p-0">
                     <div className="order-number text-uppercase border-bottom px-4 py-3">
-                        Order <span id="orderId">#A9C575EE43</span>
+                        Order <span id="orderId">{trackingData.message.data.orderId}</span>
                     </div>
                     <div className="order-date px-4 py-3">
                         <p className="bold-font">Estimated Delivery</p>
-                        <h2 id="orderDate" className="mb-0 bold-font">Fri, Aug 4</h2>
+                        <h2 id="orderDate" className="mb-0 bold-font">{trackingData.message.data.dateDelivered}</h2>
                     </div>
                     <div className="order-step px-4">
                         <div className="progress-container">
@@ -21,19 +21,19 @@ export const Tracking = (trackingData:TrackingData) => {
                             <div className="circle active step1">
                                 <div className="text-center">
                                     <p className="small bold-font mb-0">Ordered</p>
-                                    <p id="orderedDate" className="small mb-0">Fri, Jul 21</p>
+                                    <p id="orderedDate" className="small mb-0">{trackingData.message.data.dateCreated}</p>
                                 </div>
                             </div>
                             <div className="circle active step2">
                                 <div className="text-center">
                                     <p className="small bold-font mb-0">Pre Shipment</p>
-                                    <p id="transitDate" className="small mb-0">Sat, Jul 22</p>
+                                    <p id="transitDate" className="small mb-0">{trackingData.message.data.dateUpdated}</p>
                                 </div>
                             </div>
                             <div className="circle active step3">
                                 <div className="text-center">
                                     <p className="small bold-font mb-0">In Transit</p>
-                                    <p id="outForDeliveryDate" className="small mb-0">Fri, Jul 28</p>
+                                    <p id="outForDeliveryDate" className="small mb-0">{trackingData.message.data.dateShipped}</p>
                                 </div>
                             </div>
                             <div className="circle  step4">
@@ -42,7 +42,7 @@ export const Tracking = (trackingData:TrackingData) => {
                                                                                     Estimated Delivery
                                                                             </p>
                                     <p id="estimatedDeliveryDate" className="small mb-0">
-                                                                                    Fri, Aug 4                                                                            </p>
+                                                                                    {trackingData.message.data.dateDelivered}                                                                            </p>
                                 </div>
                             </div>
                         </div>

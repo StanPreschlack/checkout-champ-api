@@ -1,11 +1,11 @@
 "use client"
 import { useState } from 'react';
-import { TrackingData } from "./TrackingData";
+import { ResponseData } from "./TrackingData";
 import {Tracking} from "./Tracking";
 
 const TrackingComponent = () => {
     const [trackingId, setTrackingId] = useState('');
-    const [data, setData] = useState<TrackingData | null>(null);
+    const [data, setData] = useState<ResponseData | null>(null);
 
     const trackPackage = async () => {
         const response = await fetch('https://api.checkoutchamp.com/v1/track', {
