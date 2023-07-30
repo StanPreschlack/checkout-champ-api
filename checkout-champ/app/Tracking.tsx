@@ -1,12 +1,9 @@
-"use client"
-import { useEffect, useState } from "react";
-import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.css'
 import { ResponseData } from "./TrackingData";
 
 export const Tracking = (trackingData:ResponseData) => {
-
-  return trackingData ? (
+    // only show info if it has been less than a week
+  return (trackingData && Date.now() / 1000 - Math.floor(new Date(trackingData.message.data.dateCreated).getTime() / 1000) < 604800 ) ? (
     <div className="col-md-8 col-12 p-0">
                     <div className="order-number text-uppercase border-bottom px-4 py-3">
                         Order <span id="orderId">{trackingData.message.data.orderId}</span>
@@ -145,7 +142,25 @@ export const Tracking = (trackingData:ResponseData) => {
                     </div>
                 </div>
   ) : (
-    <div>Loading...</div>
+    <div>
+         <div className="ship-notification px-4 my-3">
+            <div className="d-flex px-4 py-2 align-items-center gap-3 bg-light-blue">
+                <img src="https://shipexpressonline.com/images/icon-info.png"/>
+                <p className="mb-0">
+                   It appears that your shipment may have been lost in transit, call the customer service number below to get more information.
+                </p>
+            </div>
+        </div>
+        <div className="d-flex px-4 justify-content-between mb-5">
+            <div className="col-6 bg-grey p-4" >
+                <p className="mb-0">Ship Express Online works with a global network of fulfillment partners and shipping carriers to get your items shipped.</p>
+            </div>
+            <div className="col-6 bg-light-green p-4" >
+                <p className="mb-0">If you have questions about your order, please contact customer service at <a href="tel:+1 213-816-7409" className="color-black bold-font">+1 213-816-7409</a>.
+                </p>
+            </div>
+        </div>
+    </div>
   );
 };
 

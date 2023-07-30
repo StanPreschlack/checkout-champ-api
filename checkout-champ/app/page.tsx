@@ -1,29 +1,13 @@
-import Image from 'next/image'
-import styles from './page.module.css'
 import TrackingInput from './TrackingInput'
-import Tracking from "./Tracking"
-import {OrderDelayed} from "./OrderDelayed"
-
-let time = Date.now() / 1000 / 60 / 60 / 24 / 7 // unix time in weeks, switch odd / even
 
 export default function Home() {
 
-    if (time % 2 == 0) {
-        return (
-            <div>
-              {/* accept input */}
-              {/* <TrackingInput /> */}
-                <OrderDelayed />
-            </div>
-            )
-    } else {
         return (
         <div>
-          {/* accept input */}
-          {/* <TrackingInput /> */}
-        
-             {/* @ts-ignore */}
-          <Tracking trackingData={{
+
+          <TrackingInput />
+{/* JUST USED FOR TESTING PROPS */}
+          {/* <Tracking trackingData={{
           "result": "SUCCESS",
           "message": {
               "totalResults": 3,
@@ -144,9 +128,9 @@ export default function Home() {
                   "dateRangeType": "dateCreated"
               }
           }
-      }}/>
+      }}/> */}
         </div>
         )
 }
 
-}
+
